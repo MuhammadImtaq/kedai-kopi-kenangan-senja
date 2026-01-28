@@ -43,25 +43,24 @@ document.addEventListener("click", function (e) {
 
 // Modal Box
 const itemDetailModal = document.querySelector("#item-detail-modal");
-const itemDetailButtons = document.querySelectorAll(".item-detail-button");
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".item-detail-button");
+  if (!btn) return;
 
-itemDetailButtons.forEach((btn) => {
-  btn.onclick = (e) => {
-    itemDetailModal.style.display = "flex";
-    e.preventDefault();
-  };
+  e.preventDefault();
+  itemDetailModal.style.display = "flex";
 });
 
-// klik tombol close modal
-
+// tombol close
 document.querySelector(".modal .close-icon").onclick = (e) => {
-  itemDetailModal.style.display = "none";
   e.preventDefault();
+  itemDetailModal.style.display = "none";
 };
 
-// klik diluar modal
-window.onclick = (e) => {
+// klik di luar modal
+itemDetailModal.addEventListener("click", (e) => {
   if (e.target === itemDetailModal) {
     itemDetailModal.style.display = "none";
   }
-};
+});
+
